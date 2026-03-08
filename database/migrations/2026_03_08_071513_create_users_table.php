@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::dropIfExists('users');
 
         Schema::create('users', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->uuid('id')->primary()->default(\DB::raw('gen_random_uuid()'));
             $table->foreignUuid('tenant_id')
                 ->constrained()
                 ->cascadeOnDelete();

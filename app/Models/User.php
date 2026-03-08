@@ -17,6 +17,8 @@ class User extends Authenticatable
     protected $keyType = 'string';
     public $incrementing = false;
 
+    protected string $guard_name = 'web';
+
     protected $fillable = [
         'tenant_id',
         'name',

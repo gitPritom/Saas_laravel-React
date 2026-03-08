@@ -21,6 +21,15 @@ class Tenant extends Model
         'trial_ends_at' => 'datetime',
     ];
 
+    protected static function booted(): void
+    {
+        static::creating(function (Tenant $tenant) {
+            if (empty($tenant->id)) {
+                $tenant->id = (string) \Illuminate\Support\Str::uuid();
+            }
+        });
+    }
+
     public function users(): HasMany
     {
         return $this->hasMany(User::class);

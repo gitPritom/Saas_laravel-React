@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tenants', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->uuid('id')->primary()->default(\DB::raw('gen_random_uuid()'));
             $table->text('name');
             $table->text('slug')->unique();
             $table->text('plan')->default('free'); 
